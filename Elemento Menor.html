@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elemento menor de la lista</title>
+  </head>
+
+  <body>
+    <script>
+      //funciona con todos los números tanto positivos como negativos, si no se pone nada en el argumento m, este tendra el valor del primer elemento del array luego se evalua entre los diferentes elementos
+      function menor(nums, m = nums[0]) {
+        if (nums.length === 0) {
+          return m;
+        } else {
+          const [first, ...rest] = nums;
+          if (parseFloat(first) < m) {
+            return menor(rest, first);
+          } else {
+            return menor(rest, m);
+          }
+        }
+      }
+
+      let entrada = prompt("Introduce los números separados por comas: ");
+
+      let nums = entrada.split(",");
+
+      // Utilizamos la segunda función
+      document.write("El número menor de la lista es el: " + menor(nums));
+    </script>
+  </body>
+</html>

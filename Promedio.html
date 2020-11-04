@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Promedio de la lista</title>
+  </head>
+
+  <body>
+    <script>
+      let entrada = prompt("Introduce los números separados por comas: ");
+
+      let nums = entrada.split(",");
+
+      //document.write(nums);
+
+      // Con el metodo reduce de los arrays
+      function prom(nums) {
+        return (
+          nums.reduce((previous, current) => {
+            return parseFloat(previous) + parseFloat(current);
+          }) / nums.length
+        );
+      }
+
+      document.write(prom(nums));
+      document.write("<br/>");
+
+      // con el array de los numeros y el incice para aumentarlo y recorrer los direferentes indices
+      function prom2(nums, pos = 0) {
+        if (pos === 0) {
+          return (
+            (parseFloat(nums[pos]) + parseFloat(prom2(nums, pos + 1))) /
+            nums.length
+          );
+        } else if (pos < nums.length) {
+          return parseFloat(nums[pos]) + parseFloat(prom2(nums, pos + 1));
+        }
+
+        return 0;
+      }
+
+      document.write(prom2(nums));
+      document.write("<br/>");
+
+      // Con el array, suma dividido cont que es la cantidad de indices que contiene el array esta se suma en uno cada vez que que se llama a a la función recursivamente
+      function prom3(nums, suma = 0, cont = 0) {
+        if (nums.length === 0) {
+          return suma / cont;
+        } else {
+          const [first, ...rest] = nums;
+          return prom3(rest, parseFloat(first) + suma, cont + 1);
+        }
+      }
+
+      document.write(prom3(nums));
+      document.write("<br/>");
+    </script>
+  </body>
+</html>

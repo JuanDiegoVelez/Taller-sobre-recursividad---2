@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elemento mayor en una lista</title>
+  </head>
+
+  <body>
+    <script>
+      // Esta funciona con todos los números tanto positivos como negativos, si no se pone nada en el argumento m, este tendra el valor del primer elemento del array luego se evalua entre los diferentes elementos
+      function mayor(nums, m = nums[0]) {
+        if (nums.length === 0) {
+          return m;
+        } else {
+          const [first, ...rest] = nums;
+          if (parseFloat(first) > m) {
+            return mayor(rest, first);
+          } else {
+            return mayor(rest, m);
+          }
+        }
+      }
+
+      // Utilizando el metodo reduce obtenemos el mismo resultado
+      function mayor2(nums) {
+        return nums.reduce((previous, current) => {
+          if (parseFloat(previous) > parseFloat(current)) {
+            return previous;
+          } else {
+            return current;
+          }
+        });
+      }
+
+      let entrada = prompt("Introduce los números separados por comas: ");
+
+      let numeros = entrada.split(",");
+
+      document.write("El número mayor de la lista es el: " + mayor(numeros));
+    </script>
+  </body>
+</html>

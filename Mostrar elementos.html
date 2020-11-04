@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mostrar elementos de una lista</title>
+  </head>
+
+  <body>
+    <script>
+      function mostrar(lista) {
+        if (lista.length === 0) {
+          return;
+        } else {
+          const [first, ...rest] = lista;
+          document.write(first);
+          mostrar(rest);
+        }
+      }
+
+      let entrada = prompt(
+        "Introduce los datos de la lista separados por comas: "
+      );
+
+      //let lista = [0,1,2,3,4,5,6,7,8,9];
+
+      let lista = entrada.split(",");
+
+      mostrar(lista);
+    </script>
+  </body>
+</html>
